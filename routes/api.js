@@ -15,6 +15,9 @@ const CONNECTION_STRING = process.env.DB; //MongoClient.connect(CONNECTION_STRIN
 
 module.exports = function (app) {
 
+  const client = new MongoClient(CONNECTION_STRING, {useNewUrlParser: true});
+  const dbName = 'library'
+
   app.route('/api/stock-prices')
     .get(function (req, res){
       
