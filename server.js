@@ -13,6 +13,15 @@ require('dotenv').config({ path: './.env' })
 
 var app = express();
 
+const csp = require('helmet-csp')
+
+app.use(csp({
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'"]
+  }
+}))
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
